@@ -12,7 +12,7 @@ public class strmeth
         System.out.println(letter);
         System.out.println(index);
         System.out.println(lastIndex);
-        name = name.trim();
+        name = name.trim(); // retires the spaces
         name = name.replace("o", "a");
         name = name.toUpperCase();
         name = name.toLowerCase();
