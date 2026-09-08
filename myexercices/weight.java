@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class weight{
     public static void main(String[] args) {
         
+        // Weight Conversion Program
+        
         double kg;
         double lb;
 
