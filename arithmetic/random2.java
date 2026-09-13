@@ -6,7 +6,7 @@ public class random2
         Random random = new Random();
 
         Double number;
-        boolean isHeads
+        boolean isHeads;
         isHeads = random.nextBoolean();
     
         if(isHeads)
