@@ -13,7 +13,6 @@ public class guess {
         int min = 1; int max = 100;
         int randomNumber = random.nextInt(min, max + 1); // the last atribute is exclusive
 
-        System.out.println(randomNumber);
         System.out.printf("Guess a number between %d-%d: ", min, max);
 
         do {
@@ -23,10 +22,8 @@ public class guess {
             if (guess < randomNumber) {
                 System.out.println("Too low, try again");
             } else if (guess > randomNumber) {
-                System.out.println("To high, try again");
-            } else {
-                System.out.println("You have won!");
-            }
+                System.out.println("Too high, try again");
+            } 
         } while (guess != randomNumber);
 
         System.out.println("You have won");
