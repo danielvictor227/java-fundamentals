@@ -6,7 +6,7 @@ public class method {
         // D.R.Y - DON'T REPEAT YOURSELF
 
         String name = "Patrick";
-        int age = ;
+        int age = 20;
 
         happyBirthday(name,age);
     }
