@@ -36,6 +36,7 @@ public class bank {
                 default -> System.out.println("Please insert a valid number");
             }
         }
+        System.out.println("Thank You! Have a nice Day!");
         scanner.close();
     }
 
