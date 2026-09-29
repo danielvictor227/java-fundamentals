@@ -4,21 +4,16 @@ import java.util.Scanner;
 
 public class quizGame {
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        
+
         System.out.println("**************************");
         System.out.println("Welcome to the Java Quiz Game!");
         System.out.println("**************************");
-        
-        
-        for(int i = 0; i<print().length; i++)
-        {
-        System.out.print("Guess: ");
-        int userInput = scanner.nextInt();
-        }
+        System.out.printf("You make %d/5 right!\n", print());
     }
-    static String[] print()
-    {
+
+    static int print() {
         String[] questions = { "What is the main function of a router?", "What year was Facebook lauched?",
                 "Which par of the computer is considered the brain?",
                 "Who is know as father of computers?", "What was the first programming language?" };
@@ -30,19 +25,27 @@ public class quizGame {
                 { "1. Steve Jobs", "2. Bill Gates", "3. Alan Turing", "4. Charles Babbage" },
                 { "1. COBOL", "2. C", "3. Fortran", "4. Assembly" }
         };
-       
+        int[] answer = { 3, 2, 1, 4, 3 };
+        int userinput;
+        int rightCounter = 0;
 
-        for(String question : questions)
-        {
-            System.out.println(question);
-            for(String[] row : alternatives)
-            {
-                for(String alternative : row)
-                {
-                    System.out.println(alternative);
+        for (int i = 0; i < questions.length; i++) {
+            System.out.printf("%s\n", questions[i]);
+            do {
+                for (int j = 0; j < alternatives[i].length; j++) {
+                    System.out.printf("%s\n", alternatives[i][j]);
                 }
+                System.out.printf("Guess: ");
+                userinput = scanner.nextInt();
+            } while (userinput > alternatives[i].length || userinput <= 0);
+
+            if (userinput == answer[i]) {
+                System.out.println("Right!");
+                rightCounter++;
+            } else {
+                System.out.println("Wrong!");
             }
         }
-        return questions;
+        return rightCounter;
     }
 }
