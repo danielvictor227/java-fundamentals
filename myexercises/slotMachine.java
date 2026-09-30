@@ -36,6 +36,10 @@ public class slotMachine {
                 {
                     System.out.println("The number is bigger than the current balance!");
                 }
+                if(userBet <= 0)
+                {
+                    System.out.println("The number needs to be bigger than 0");
+                }
             } while(userBet > currentBalance);
             
             System.out.println("Spinning...");
@@ -53,6 +57,8 @@ public class slotMachine {
     }
 
     static int moneycalculator(int bet, int balance, String[] spin) {
+        balance -= bet;
+        
         if (spin[0].equals(spin[1]) || spin[1].equals(spin[2])) {
             balance += bet * 5;
             System.out.println("**********************");
