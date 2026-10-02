@@ -40,7 +40,7 @@ public class slotMachine {
                 {
                     System.out.println("The number needs to be bigger than 0");
                 }
-            } while(userBet > currentBalance);
+            } while(userBet > currentBalance || userBet <= 0);
             
             System.out.println("Spinning...");
             for (int j = 0; j < winningCondition; j++) {
@@ -50,25 +50,15 @@ public class slotMachine {
             currentBalance = moneycalculator(userBet, currentBalance, spin);
             System.out.print("Do you want to play again? (Y/N): ");
             isRunning = scanner.next().toLowerCase().charAt(0);
-        } while (isRunning == 'y' || currentBalance <= 0);
+        } while (isRunning == 'y' || currentBalance > 0);
 
         System.out.println("GAME OVER! Your final balance is: $" + currentBalance);
         scanner.close();
     }
 
     static int moneycalculator(int bet, int balance, String[] spin) {
-        balance -= bet;
         
-        if (spin[0].equals(spin[1]) || spin[1].equals(spin[2])) {
-            balance += bet * 5;
-            System.out.println("**********************");
-            for (String spins : spin) {
-                System.out.print(spins + " | ");
-            }
-            System.out.println();
-            System.out.println("**********************");
-            System.out.println("You Won: $" + (bet * 5));
-        } else if (spin[0].equals(spin[1]) && spin[1].equals(spin[2])) {
+        if (spin[0].equals(spin[1]) && spin[1].equals(spin[2])) {
             balance += bet * 10;
             System.out.println("**********************");
             for (String spins : spin) {
@@ -77,7 +67,17 @@ public class slotMachine {
             System.out.println();
             System.out.println("**********************");
             System.out.println("You Won: $" + (bet * 10));
-        } else {
+        }
+        else if (spin[0].equals(spin[1]) || spin[1].equals(spin[2])) {
+            balance += bet * 5;
+            System.out.println("**********************");
+            for (String spins : spin) {
+                System.out.print(spins + " | ");
+            }
+            System.out.println();
+            System.out.println("**********************");
+            System.out.println("You Won: $" + (bet * 5));
+        }  else {
             balance -= bet * 3;
             System.out.println("**********************");
             for (String spins : spin) {
