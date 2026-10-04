@@ -22,7 +22,6 @@ public class staticKey {
        /*  System.out.println(friend3.numOfFriends); */
 
        System.out.println(Friend.numOfFriends);
-
        Friend.showFriends();
 
        Math.round(3.99);

@@ -11,7 +11,7 @@ public class Main {
         /* car.model = "Corvette"; */
 
         car.setColor("Blue");
-        car.setPrice(-100);
+       
 
         System.out.println(car.getColor() + " " + car.getModel() + " " + car.getPrice());
         
