@@ -8,7 +8,7 @@ public abstract class Vehicle {
             throw new IllegalArgumentException("Invalid Plate");
         }
 
-        this.plate = plate.toUpperCase();
+        this.plate = plate;
 
     }
 

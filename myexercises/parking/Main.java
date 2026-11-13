@@ -13,8 +13,8 @@ public class Main {
                 System.out.println("Erro " + e.getMessage());
             }
         }
-        
-        parkingLot.freeSpots();
+
+        System.out.println("Free Spots: " + parkingLot.freeSpots());
         parkingLot.listVehicles();
 
         try {
@@ -61,7 +61,6 @@ public class Main {
             System.out.println("Erro " + e.getMessage());
         }
 
-        parkingLot.freeSpots();
-        parkingLot.getRevenue();
+        System.out.println("Revenue: " + parkingLot.getRevenue());;
     }
 }

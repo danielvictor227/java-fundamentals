@@ -18,9 +18,9 @@ public class ParkingLot{
         {
             throw new IllegalStateException("Parking lot is Full");
         }
-        for(int i = 0; i < activeTickets.size(); i++)
+        
         {
-            if(activeTickets.get(i).vehicle.getPlate().equals(vehicle.getPlate()))
+            if(findTicket(vehicle.getPlate()) != null)
             {
                 throw new IllegalStateException("The vehicle is already inside of the Parking Lot");
             }
@@ -49,17 +49,15 @@ public class ParkingLot{
         {
             throw new IllegalArgumentException("Invalid hours");
         }
-        for(int i = 0; i < activeTickets.size(); i++)
-        {
-            if(activeTickets.get(i).vehicle.getPlate() == plate)
-            {
-                Vehicle vehicle = activeTickets.get(i).vehicle;
-                total =  vehicle.hourlyRate() * hours;
-                activeTickets.remove(i);
+                if(findTicket(plate) != null)
+                    {    
+                Ticket found = findTicket(plate);
+                total =  found.vehicle.hourlyRate() * hours;
+                activeTickets.remove(found);
                 accumulatedRevenue += total;
-                System.out.printf("Exit: %s | %dh | R$ %.2f\n", vehicle.toString(), hours, total);
-            }
-        }
+                System.out.printf("Exit: %s | %dh | R$ %.2f\n", found.vehicle.toString(), hours, total);
+                    }
+        
         return total;
     }
 
