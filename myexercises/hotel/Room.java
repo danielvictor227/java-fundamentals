@@ -5,7 +5,7 @@ public abstract class Room {
 
     Room(int number)
     {
-        number = this.number;
+        this.number = number;
 
         if(number <= 0)
         {

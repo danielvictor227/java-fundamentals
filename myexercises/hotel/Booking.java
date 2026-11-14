@@ -9,9 +9,9 @@ public class Booking {
 
     Booking(Guest guest, Room room, int days)
     {
-        guest = this.guest;
-        room = this.room;
-        days = this.days;
+        this.guest = guest;
+        this.room = room;
+        this.days = days;
         reserve++;
         id = reserve;
     }
@@ -44,6 +44,6 @@ public class Booking {
     @Override
     public String toString() {
         
-        return "Check-in: " +guest.getName() + "-> " + super.toString() + "| Reserva #" + id;
+        return "Check-in: " +guest.getName() + "-> " + room.toString() + "| Reserva #" + id;
     }
 }

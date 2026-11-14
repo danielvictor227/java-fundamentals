@@ -6,15 +6,15 @@ public class Guest {
 
     Guest(String name, String document)
     {
-        name = this.name;
-        document = this.document;
+        this.name = name;
+        this.document = document;
 
-        if(name.equals(null) || name.equals(""))
+        if(name == null || name.isBlank())
         {
             throw new IllegalArgumentException("Invalid Name");
         }
         
-        if(document.equals(null) || document.equals(""))            // nao sei como comparar null para evitar NullpointerException, nao lembro na verdade. Irei manter sabendo que preciso trocar
+        if(document == null || document.isBlank())            // nao sei como comparar null para evitar NullpointerException, nao lembro na verdade. Irei manter sabendo que preciso trocar
         {
             throw new IllegalArgumentException("Invalid Document");
         }

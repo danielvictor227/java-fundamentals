@@ -7,6 +7,12 @@ public class Hotel {
     ArrayList<Booking> activeBookings;
     double revenue;
 
+
+    Hotel()
+        {
+            this.allRooms = new ArrayList<>();
+            this.activeBookings = new ArrayList<>();
+        }
     void addRoom(Room r) {
         for (Room room : allRooms) {
             if (room.getNumber() == r.getNumber()) {
@@ -22,7 +28,7 @@ public class Hotel {
                 return room;
             }
         }
-        System.out.println("The room was not found");
+        
         return null;
     }
 
@@ -32,38 +38,30 @@ public class Hotel {
                 return booking;
             }
         }
-        System.out.println("Guest not found");
+       
         return null;
     }
 
     boolean isOccupied(Room r) {
         for (Booking booking : activeBookings) {
             if (booking.getRoom().equals(r)) {
-                System.out.println("Room " + r.getNumber() + " is occupied");
                 return true;
             }
         }
-        System.out.println("Room " + r.getNumber() + " is not occupied");
+        
         return false;
     }
 
-    boolean guestIsHost(Guest guest) {
-        for (Booking booking : activeBookings) {
-            if (booking.getGuest().equals(guest)) {
-                System.out.println("The guest is already hosted");
-                return true;
-            }
-        }
-        return false;
-    }
 
     void checkIn(Guest g, int roomNumber, int nights) {
-        Room newRoom = findRoom(roomNumber);
-
         if (nights < 1) {
             throw new IllegalArgumentException("Invalid daily!");
         }
-        if (findRoom(roomNumber) == null) {
+
+        Room newRoom = findRoom(roomNumber);
+
+        
+        if (newRoom == null) {
             throw new IllegalStateException("The room doesn't exists!");
         }
 
@@ -71,34 +69,39 @@ public class Hotel {
             throw new IllegalStateException("The Room is occupied");
         }
 
-        if (guestIsHost(g) == true) {
+        if (findBooking(g.getDocument()) != null) {
             throw new IllegalStateException();
         }
 
         Booking newBooking = new Booking(g, newRoom, nights);
         activeBookings.add(newBooking);
 
-        System.out.println(newBooking);
+        System.out.println(newBooking.toString());
     }
 
 
     double checkOut(String document)
-    {
-       Booking outBooking = findBooking(document);
-       revenue += outBooking.total();
-       System.out.printf("Check-Out: %s | %d days | R$%.2f\n", outBooking.getGuest(), outBooking.getDays(), outBooking.total());
-       System.out.println(activeBookings.remove(outBooking));
-       return outBooking.total();
+    {   
+        Booking outBooking = findBooking(document);
+        if(outBooking == null)
+        {
+            throw new IllegalStateException("Reservation doesn't found");
+        }
+       double total = outBooking.total();
+       revenue += total;
+       System.out.printf("Check-Out: %s | %d days | R$%.2f\n", outBooking.getGuest().getName(), outBooking.getDays(), total);
+       activeBookings.remove(outBooking);
+       return total;
     }
 
     int listAvailableRooms()
     {
         int available = 0;
-        for(Booking booking : activeBookings)
+        for(Room room : allRooms)
         {
-            if(isOccupied(booking.getRoom()) == false)
+            if(isOccupied(room) == false)
             {
-                System.out.printf("Livre: <%s>\n", booking.getRoom().toString());
+                System.out.printf("Livre: %s\n", room.toString());
                 available++;
             }
         }
@@ -108,7 +111,7 @@ public class Hotel {
 
     String occupancy()
     {
-        return listAvailableRooms()/allRooms.size() + "(Reservas ativas / Total de Quartos)";
+        return activeBookings.size() + " / " + allRooms.size() + " (Reservas ativas / Total de Quartos)";
     }
 
     double getRevenue()
